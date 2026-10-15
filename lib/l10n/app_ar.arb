@@ -1,0 +1,314 @@
+{
+  "@@locale": "ar",
+  "appTitle": "دكان",
+  "setupTitle": "الإعداد الأولي",
+  "baseCurrency": "العملة الأساسية",
+  "currencyUsd": "دولار (USD)",
+  "currencySyp": "ليرة (SYP)",
+  "exchangeRateLabel": "سعر الصرف (ليرة مقابل 1 دولار)",
+  "roundingStepLabel": "تقريب أسعار البيع بالليرة للأعلى",
+  "noRounding": "بدون تقريب",
+  "startUsing": "ابدأ الاستخدام",
+  "invalidRate": "أدخل سعر صرف صحيحاً أكبر من صفر",
+  "settingsTitle": "الإعدادات",
+  "currentRate": "سعر الصرف الحالي",
+  "updateRate": "تحديث سعر الصرف",
+  "edit": "تعديل",
+  "rateUpdated": "تم تحديث سعر الصرف",
+  "largeChangeTitle": "تغيّر كبير في السعر",
+  "largeChangeMessage": "السعر الجديد ({newRate}) يختلف كثيراً عن السعر الحالي ({oldRate}). هل أنت متأكد؟",
+  "@largeChangeMessage": {
+    "placeholders": {
+      "newRate": {
+        "type": "String"
+      },
+      "oldRate": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "إلغاء",
+  "confirm": "تأكيد",
+  "save": "حفظ",
+  "showDualCurrency": "عرض الأسعار بالعملتين",
+  "digitStyle": "أسلوب الأرقام",
+  "digitsWestern": "0-9",
+  "digitsArabicIndic": "٠-٩",
+  "language": "اللغة",
+  "languageArabic": "العربية",
+  "languageEnglish": "English",
+  "homePlaceholder": "الشاشات القادمة: المنتجات، نقطة البيع، الزبائن",
+  "homeDemoTitle": "مثال على التحويل بسعر الصرف الحالي",
+  "products": "المنتجات",
+  "categories": "الفئات",
+  "lowStock": "المخزون المنخفض",
+  "searchProducts": "ابحث بالاسم أو الباركود",
+  "allCategories": "الكل",
+  "uncategorized": "بدون فئة",
+  "noProducts": "لا توجد منتجات",
+  "addProduct": "إضافة منتج",
+  "editProduct": "تعديل المنتج",
+  "productName": "اسم المنتج",
+  "category": "الفئة",
+  "barcode": "الباركود",
+  "costPrice": "سعر التكلفة",
+  "salePrice": "سعر البيع",
+  "lowStockThresholdLabel": "حد تنبيه المخزون (اختياري)",
+  "initialQuantity": "الكمية الافتتاحية (اختياري)",
+  "adjustStock": "تعديل المخزون",
+  "addStock": "إضافة مخزون",
+  "reduceStock": "إنقاص / تصحيح",
+  "quantityField": "الكمية",
+  "note": "ملاحظة (اختياري)",
+  "currentQuantity": "الكمية الحالية: {qty}",
+  "@currentQuantity": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "quantityShort": "الكمية: {qty}",
+  "@quantityShort": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "thresholdValue": "الحد: {threshold}",
+  "@thresholdValue": {
+    "placeholders": {
+      "threshold": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStockBadge": "مخزون منخفض",
+  "deactivate": "إخفاء المنتج",
+  "deactivateConfirm": "سيختفي هذا المنتج من القوائم والبيع، وتبقى فواتيره القديمة كما هي.",
+  "profitMargin": "هامش الربح التقريبي: {percent}",
+  "@profitMargin": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "newCategory": "فئة جديدة",
+  "categoryName": "اسم الفئة",
+  "rename": "إعادة تسمية",
+  "delete": "حذف",
+  "deleteCategoryConfirm": "حذف هذه الفئة؟ ستصبح منتجاتها بدون فئة.",
+  "noCategories": "لا توجد فئات",
+  "noLowStock": "لا توجد منتجات منخفضة المخزون",
+  "errInvalidName": "أدخل اسماً صحيحاً",
+  "errInvalidPrice": "أدخل سعراً صحيحاً",
+  "errInvalidQuantity": "أدخل كمية صحيحة",
+  "errDuplicateBarcode": "هذا الباركود مستخدم لمنتج آخر",
+  "errDuplicateCategory": "اسم الفئة موجود مسبقاً",
+  "errNegativeStock": "لا يمكن أن تصبح الكمية أقل من صفر",
+  "errNotFound": "العنصر غير موجود",
+  "scanBarcode": "مسح الباركود",
+  "scanHint": "وجّه الكاميرا نحو الباركود",
+  "enterManually": "إدخال يدوي",
+  "torch": "الفلاش",
+  "switchCamera": "تبديل الكاميرا",
+  "cameraPermissionDenied": "لم يُسمح للتطبيق باستخدام الكاميرا. فعّل صلاحية الكاميرا من إعدادات الجهاز ثم أعد المحاولة، أو أدخل الباركود يدوياً.",
+  "cameraUnavailable": "الكاميرا غير متوفرة على هذا الجهاز. أدخل الباركود يدوياً.",
+  "cameraError": "تعذّر تشغيل الكاميرا. أدخل الباركود يدوياً.",
+  "barcodeUsedBy": "هذا الباركود مسجّل للمنتج: {name}",
+  "@barcodeUsedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "barcodeUsedByHidden": "هذا الباركود محجوز لمنتج مخفي: {name}",
+  "@barcodeUsedByHidden": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "openProduct": "فتح المنتج",
+  "pos": "نقطة البيع",
+  "salesHistory": "سجل المبيعات",
+  "searchOrScan": "ابحث بالاسم أو امسح الباركود",
+  "cartEmpty": "السلة فارغة",
+  "clearCart": "تفريغ السلة",
+  "clearCartConfirm": "تفريغ السلة من كل المنتجات؟",
+  "scanAdded": "أُضيف: {name}",
+  "@scanAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "scanNotFound": "لا يوجد منتج بهذا الباركود: {code}",
+  "@scanNotFound": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "continuousScanHint": "امسح المنتجات تباعاً، ثم ارجع لإتمام البيع",
+  "quantityEdit": "تعديل الكمية",
+  "setDiscount": "تحديد الخصم",
+  "discount": "الخصم",
+  "subtotal": "المجموع",
+  "total": "الإجمالي",
+  "invoiceCurrency": "عملة الفاتورة",
+  "checkout": "إتمام البيع",
+  "exceedsStock": "الكمية أكبر من المتوفر في المخزون",
+  "exceedsStockWarning": "بعض المنتجات تتجاوز الكمية المتوفرة في المخزون، وسيصبح مخزونها بالسالب. هل تريد المتابعة؟",
+  "received": "المبلغ المستلم",
+  "receivedLessThanTotal": "المبلغ المستلم أقل من الإجمالي",
+  "change": "الباقي",
+  "confirmSale": "تأكيد البيع",
+  "saleDone": "تمت عملية البيع",
+  "invoiceNumberLabel": "فاتورة رقم {number}",
+  "@invoiceNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "newInvoice": "فاتورة جديدة",
+  "invoiceDetails": "تفاصيل الفاتورة",
+  "today": "اليوم",
+  "salesCount": "عدد الفواتير: {count}",
+  "@salesCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "totalSalesBase": "إجمالي المبيعات (بالعملة الأساسية)",
+  "profit": "الربح",
+  "cost": "التكلفة",
+  "noInvoices": "لا توجد فواتير في هذا اليوم",
+  "invoiceVoided": "ملغاة",
+  "paymentCash": "نقدي",
+  "paymentCredit": "آجل",
+  "payment": "الدفع",
+  "voidInvoice": "إلغاء الفاتورة",
+  "voidConfirm": "سيتم إلغاء الفاتورة وإرجاع الكميات إلى المخزون. لا يمكن التراجع عن ذلك.",
+  "voidDone": "تم إلغاء الفاتورة",
+  "date": "التاريخ",
+  "exchangeRateUsed": "سعر الصرف المستخدم",
+  "storeName": "اسم المتجر",
+  "allowNegativeStock": "السماح بالبيع بأكثر من المتوفر",
+  "errEmptyCart": "السلة فارغة",
+  "errInvalidAmount": "المبلغ غير صحيح",
+  "errInsufficientStock": "الكمية المطلوبة أكبر من المتوفر في المخزون",
+  "errAlreadyVoided": "هذه الفاتورة ملغاة مسبقاً",
+  "errCustomerRequired": "اختر زبوناً للبيع الآجل",
+  "customers": "الزبائن",
+  "addCustomer": "إضافة زبون",
+  "editCustomer": "تعديل الزبون",
+  "customerName": "اسم الزبون",
+  "phone": "الهاتف",
+  "notes": "ملاحظات",
+  "searchCustomers": "ابحث بالاسم أو الهاتف",
+  "onlyWithDebt": "من عليهم دين فقط",
+  "sortByName": "الفرز بالاسم",
+  "sortByDebt": "الفرز بأعلى دين",
+  "noCustomers": "لا يوجد زبائن",
+  "totalDebts": "إجمالي الديون المستحقة",
+  "customersWithDebt": "عدد المدينين: {count}",
+  "@customersWithDebt": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "debtEquivalent": "ما يعادلها بالعملة الأساسية بسعر الصرف الحالي",
+  "balance": "الرصيد",
+  "owes": "عليه",
+  "creditInFavor": "رصيد للزبون",
+  "noDebt": "لا دين",
+  "recordPayment": "تسجيل دفعة",
+  "copyStatement": "نسخ ملخص الرصيد",
+  "statementCopied": "تم نسخ ملخص الرصيد",
+  "statementHeader": "كشف حساب الزبون: {name}",
+  "@statementHeader": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "statementDate": "التاريخ: {date}",
+  "@statementDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "statementOwed": "المبلغ المستحق",
+  "statementCredit": "رصيد لصالح الزبون",
+  "statementSettled": "لا يوجد دين مستحق.",
+  "ledgerInvoice": "فاتورة {number}",
+  "@ledgerInvoice": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "ledgerPayment": "دفعة",
+  "ledgerPaidIn": "دُفع: {amount}",
+  "@ledgerPaidIn": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "noEntries": "لا توجد حركات بعد",
+  "paidNow": "المدفوع الآن",
+  "remainingDebt": "الدين المتبقي",
+  "customerLabel": "الزبون",
+  "chooseCustomer": "اختر الزبون",
+  "newCustomer": "زبون جديد",
+  "debtAtSale": "الدين وقت البيع",
+  "voidCreditNote": "هذه فاتورة آجلة: سيتغير رصيد الزبون بعد إلغائها، وقد يصبح له رصيد إن كان سدّد منها.",
+  "payInCurrency": "عملة الدفع",
+  "settleDebtIn": "سداد الدين بعملة",
+  "debtLabel": "الدين",
+  "paymentAmount": "المبلغ المدفوع",
+  "appliedAmountLabel": "المخصوم من الدين: {amount}",
+  "@appliedAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceAfter": "الرصيد بعد الدفعة: {amount}",
+  "@balanceAfter": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "settleAll": "سداد كامل",
+  "voidPayment": "إلغاء الدفعة",
+  "voidPaymentConfirm": "سيُلغى تسجيل هذه الدفعة ويعود الدين كما كان. تبقى الدفعة ظاهرة في الكشف مشطوبة.",
+  "paymentVoided": "تم إلغاء الدفعة",
+  "hideCustomer": "إخفاء الزبون",
+  "hideCustomerConfirm": "سيختفي هذا الزبون من القوائم، وتبقى فواتيره القديمة.",
+  "errCustomerHasDebt": "لا يمكن إخفاء زبون عليه دين أو له رصيد",
+  "errPaymentExceedsDebt": "المبلغ أكبر من الدين المتبقي",
+  "errNoDebt": "لا يوجد دين بهذه العملة على الزبون"
+}
