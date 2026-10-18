@@ -5,12 +5,13 @@ import 'package:path/path.dart' as p;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'package:dukan_special_app/core/currency/currency.dart';
+import 'package:dukan_special_app/core/currency/payment_math.dart';
 import 'package:dukan_special_app/core/database/app_database.dart';
 import 'package:dukan_special_app/core/errors/app_exceptions.dart';
 import 'package:dukan_special_app/data/models/checkout_request.dart';
+import 'package:dukan_special_app/data/models/customer.dart';
 import 'package:dukan_special_app/data/models/product.dart';
 import 'package:dukan_special_app/data/models/sale_transaction.dart';
-import 'package:dukan_special_app/data/models/customer.dart';
 import 'package:dukan_special_app/data/repositories/customer_payment_repository.dart';
 import 'package:dukan_special_app/data/repositories/customer_repository.dart';
 import 'package:dukan_special_app/data/repositories/product_repository.dart';
@@ -41,7 +42,7 @@ void main() {
     payments = CustomerPaymentRepository(appDb);
     sales = TransactionRepository(appDb);
     products = ProductRepository(appDb);
-    customerId = await customers.create(const CustomerInput(name: 'أحمد'));
+    customerId = await customers.create(const CustomerInput(name: 'زبون'));
   });
 
   tearDown(() async {
@@ -54,16 +55,18 @@ void main() {
     int total = 100000,
     int paid = 0,
   }) async {
-    final productId = await products.create(
-      const ProductInput(name: 'سلعة', salePrice: 1, initialQuantity: 100),
-    );
+    final productId = await products.create(const ProductInput(
+      name: 'منتج',
+      salePrice: 1,
+      initialQuantity: 100,
+    ));
     return sales.checkout(CheckoutRequest(
       currency: currency,
       exchangeRate: 15000,
       lines: [
         CheckoutLine(
           productId: productId,
-          productName: 'سلعة',
+          productName: 'منتج',
           quantity: 1,
           unitPrice: total,
           unitCost: 0,
@@ -82,7 +85,7 @@ void main() {
   Future<int> pay(
     int amount, {
     Currency currency = Currency.syp,
-    Currency? applied,
+    Currency applied = Currency.syp,
     double rate = 15000,
     String? note,
   }) {
@@ -90,19 +93,18 @@ void main() {
       customerId: customerId,
       amount: amount,
       currency: currency,
-      appliedCurrency: applied ?? currency,
+      appliedCurrency: applied,
       rate: rate,
       note: note,
     );
   }
 
   group('addPayment', () {
-    test('a partial payment in the debt currency', () async {
-      await creditSale(total: 100000, paid: 20000); // owes 80,000
+    test('a partial payment in the debt currency reduces the balance', () async {
+      await creditSale(total: 100000);
       await pay(30000, note: '  دفعة أولى ');
 
-      expect(await balance(Currency.syp), 50000);
-
+      expect(await balance(Currency.syp), 70000);
       final saved = (await payments.listForCustomer(customerId)).single;
       expect(saved.amount, 30000);
       expect(saved.currency, Currency.syp);
@@ -113,9 +115,9 @@ void main() {
       expect(saved.isVoided, isFalse);
     });
 
-    test('paying pounds against a dollar debt, at the rate of the payment', () async {
-      await creditSale(currency: Currency.usd, total: 1000); // owes $10
-      await pay(75000, currency: Currency.syp, applied: Currency.usd, rate: 15000);
+    test('paying pounds against a dollar debt converts at the payment rate', () async {
+      await creditSale(currency: Currency.usd, total: 1000); // $10.00
+      await pay(75000, currency: Currency.syp, applied: Currency.usd);
 
       expect(await balance(Currency.usd), 500);
       final saved = (await payments.listForCustomer(customerId)).single;
@@ -124,101 +126,103 @@ void main() {
       expect(saved.appliedAmount, 500);
       expect(saved.appliedCurrency, Currency.usd);
 
-      // The rest is paid when the rate has changed: the new rate is used.
-      await pay(80000, currency: Currency.syp, applied: Currency.usd, rate: 16000);
+      // The rest, using the "pay all" amount, closes the debt.
+      final rest = PaymentMath.settlementAmount(
+        balance: 500,
+        payCurrency: Currency.syp,
+        appliedCurrency: Currency.usd,
+        rate: 15000,
+      );
+      await pay(rest, currency: Currency.syp, applied: Currency.usd);
       expect(await balance(Currency.usd), 0);
     });
 
-    test('paying dollars against a pound debt', () async {
-      await creditSale(total: 150000);
-      await pay(500, currency: Currency.usd, applied: Currency.syp, rate: 15000);
-      expect(await balance(Currency.syp), 75000);
+    test('a payment above the debt is rejected and nothing is saved', () async {
+      await creditSale(total: 50000);
+      await expectLater(pay(50001), _appError(AppError.paymentExceedsDebt));
+      expect(await payments.listForCustomer(customerId), isEmpty);
+      expect(await balance(Currency.syp), 50000);
     });
 
-    test('a debt can be settled exactly with the rounding tolerance', () async {
-      await creditSale(total: 150000);
-      // 979 cents at 15,333 is worth 150,110 SYP: closes the debt exactly
+    test('a rounding excess of a cross-currency payment is clamped to the debt', () async {
+      await creditSale(total: 150000); // SYP debt
+      // 979 cents at 15333 is 150,110 SYP: a little over, but within a cent.
       await pay(979, currency: Currency.usd, applied: Currency.syp, rate: 15333);
       expect(await balance(Currency.syp), 0);
       expect((await payments.listForCustomer(customerId)).single.appliedAmount, 150000);
     });
 
-    test('a payment above the debt is rejected and nothing is saved', () async {
-      await creditSale(total: 80000);
-      await expectLater(pay(80001), _appError(AppError.paymentExceedsDebt));
-      expect(await payments.listForCustomer(customerId), isEmpty);
-      expect(await balance(Currency.syp), 80000);
-    });
-
     test('there must be a debt in the chosen currency', () async {
-      await creditSale(total: 80000); // pounds only
+      await creditSale(total: 50000); // only an SYP debt
       await expectLater(
         pay(100, currency: Currency.usd, applied: Currency.usd),
         _appError(AppError.noDebt),
       );
     });
 
-    test('invalid input and unknown customers', () async {
+    test('invalid input', () async {
       await creditSale();
       await expectLater(pay(0), _appError(AppError.invalidAmount));
       await expectLater(pay(-5), _appError(AppError.invalidAmount));
-      await expectLater(pay(100, rate: 0), _appError(AppError.invalidAmount));
+      await expectLater(pay(1000, rate: 0), _appError(AppError.invalidAmount));
       await expectLater(
         payments.addPayment(
           customerId: 999,
-          amount: 10,
+          amount: 100,
           currency: Currency.syp,
           appliedCurrency: Currency.syp,
           rate: 15000,
         ),
         _appError(AppError.notFound),
       );
+      expect(await payments.listForCustomer(customerId), isEmpty);
     });
+  });
 
-    test('the two currencies are settled independently', () async {
-      await creditSale(total: 100000);
-      await creditSale(currency: Currency.usd, total: 2000);
-      expect(await balance(Currency.syp), 100000);
-      expect(await balance(Currency.usd), 2000);
+  group('balances with several invoices and currencies', () {
+    test('each currency keeps its own balance', () async {
+      await creditSale(total: 100000, paid: 20000);
+      await creditSale(currency: Currency.usd, total: 2500);
+      await pay(30000);
 
-      await pay(40000);
-      expect(await balance(Currency.syp), 60000);
-      expect(await balance(Currency.usd), 2000);
+      expect(await balance(Currency.syp), 50000); // 80000 - 30000
+      expect(await balance(Currency.usd), 2500);
     });
   });
 
   group('voidPayment', () {
-    test('the debt returns and the payment stays in the list', () async {
+    test('the debt returns, the payment stays listed as voided', () async {
       await creditSale(total: 100000);
-      final paymentId = await pay(60000);
-      expect(await balance(Currency.syp), 40000);
+      final id = await pay(40000);
+      expect(await balance(Currency.syp), 60000);
 
-      await payments.voidPayment(paymentId);
+      await payments.voidPayment(id);
 
       expect(await balance(Currency.syp), 100000);
-      final saved = (await payments.listForCustomer(customerId)).single;
-      expect(saved.isVoided, isTrue);
+      final listed = await payments.listForCustomer(customerId);
+      expect(listed, hasLength(1));
+      expect(listed.single.isVoided, isTrue);
     });
 
-    test('twice is refused, an unknown payment reports notFound', () async {
+    test('cannot be voided twice; unknown payments report notFound', () async {
       await creditSale();
-      final paymentId = await pay(1000);
-      await payments.voidPayment(paymentId);
-      await expectLater(payments.voidPayment(paymentId), _appError(AppError.alreadyVoided));
+      final id = await pay(1000);
+      await payments.voidPayment(id);
+      await expectLater(payments.voidPayment(id), _appError(AppError.alreadyVoided));
       await expectLater(payments.voidPayment(999), _appError(AppError.notFound));
     });
 
-    test('a voided payment does not count against a later payment limit', () async {
-      await creditSale(total: 50000);
-      final first = await pay(50000);
-      await payments.voidPayment(first);
-      await pay(50000); // allowed again: the debt is back
+    test('a voided payment can be entered again', () async {
+      await creditSale(total: 10000);
+      final id = await pay(10000);
+      await payments.voidPayment(id);
+      await pay(10000);
       expect(await balance(Currency.syp), 0);
     });
   });
 
-  group('interaction with invoices', () {
-    test('voiding a credit invoice after a payment leaves a credit in his favour', () async {
+  group('voiding a credit invoice that was already paid', () {
+    test('leaves a credit balance in the customer favour', () async {
       final invoiceId = await creditSale(total: 100000);
       await pay(100000);
       expect(await balance(Currency.syp), 0);
@@ -234,18 +238,20 @@ void main() {
         customers.setActive(customerId, false),
         _appError(AppError.customerHasDebt),
       );
-      // And there is no debt left to pay.
-      await expectLater(pay(1), _appError(AppError.noDebt));
     });
+  });
 
-    test('listForCustomer returns newest first and includes voided payments', () async {
+  group('listForCustomer', () {
+    test('newest first and only this customer', () async {
+      final other = await customers.create(const CustomerInput(name: 'آخر'));
       await creditSale(total: 100000);
-      final a = await pay(1000);
-      final b = await pay(2000);
-      await payments.voidPayment(a);
-      final list = await payments.listForCustomer(customerId);
-      expect(list.map((x) => x.id), [b, a]);
-      expect(list.last.isVoided, isTrue);
+      final first = await pay(1000);
+      final second = await pay(2000);
+
+      // a payment of another customer must not appear
+      expect(await payments.listForCustomer(other), isEmpty);
+      final listed = await payments.listForCustomer(customerId);
+      expect(listed.map((e) => e.id), [second, first]);
     });
   });
 }

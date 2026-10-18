@@ -141,4 +141,52 @@ void main() {
     expect(rows.single['value'], '41');
     await appDb.close();
   });
+
+  test('a version 2 database is upgraded to version 3 (payments can be voided)', () async {
+    final path = p.join(tmp.path, 'v2.db');
+
+    // Build a database exactly as version 2 of the app left it.
+    final v2 = await databaseFactoryFfi.openDatabase(
+      path,
+      options: OpenDatabaseOptions(
+        version: 2,
+        onCreate: (db, _) async {
+          for (final sql in schemaV1) {
+            await db.execute(sql);
+          }
+          for (final sql in migrations[2]!) {
+            await db.execute(sql);
+          }
+          await db.insert(Tables.customers, {
+            'name': 'زبون',
+            'name_normalized': 'زبون',
+            'created_at': '2026-10-01T00:00:00.000Z',
+          });
+          await db.insert(Tables.customerPayments, {
+            'customer_id': 1,
+            'amount': 500,
+            'currency': 'SYP',
+            'exchange_rate': 15000.0,
+            'applied_amount': 500,
+            'applied_currency': 'SYP',
+            'created_at': '2026-10-02T00:00:00.000Z',
+          });
+        },
+      ),
+    );
+    await v2.close();
+
+    final appDb = AppDatabase.forTesting(path: path, factory: databaseFactoryFfi);
+    final db = await appDb.database;
+
+    final version = await db.rawQuery('PRAGMA user_version');
+    expect(version.first.values.first, currentDbVersion);
+    expect(currentDbVersion, greaterThanOrEqualTo(3));
+
+    final payment = (await db.query(Tables.customerPayments)).single;
+    expect(payment['amount'], 500);
+    expect(payment['is_voided'], 0);
+
+    await appDb.close();
+  });
 }
