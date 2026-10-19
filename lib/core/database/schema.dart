@@ -19,6 +19,10 @@ abstract final class Tables {
   static const transactionItems = 'transaction_items';
   static const customerPayments = 'customer_payments';
   static const stockMovements = 'stock_movements';
+  static const suppliers = 'suppliers';
+  static const purchases = 'purchases';
+  static const purchaseItems = 'purchase_items';
+  static const supplierPayments = 'supplier_payments';
 }
 
 /// Keys stored in the `settings` key-value table.
@@ -34,6 +38,7 @@ abstract final class SettingKeys {
   static const storeName = 'store_name';
   static const allowNegativeStock = 'allow_negative_stock'; // '1' | '0'
   static const invoiceCounter = 'invoice_counter'; // last used invoice number
+  static const purchaseCounter = 'purchase_counter'; // last used purchase number
 }
 
 /// Every table a valid database of this app must contain.
@@ -48,6 +53,10 @@ const List<String> requiredTables = <String>[
   Tables.transactionItems,
   Tables.customerPayments,
   Tables.stockMovements,
+  Tables.suppliers,
+  Tables.purchases,
+  Tables.purchaseItems,
+  Tables.supplierPayments,
 ];
 
 /// Version 1 of the schema, one statement per list entry.

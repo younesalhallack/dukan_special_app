@@ -607,4 +607,190 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errNoDebt => 'The customer has no debt in this currency';
+
+  @override
+  String get suppliers => 'Suppliers';
+
+  @override
+  String get addSupplier => 'Add supplier';
+
+  @override
+  String get editSupplier => 'Edit supplier';
+
+  @override
+  String get supplierName => 'Supplier name';
+
+  @override
+  String get searchSuppliers => 'Search by name or phone';
+
+  @override
+  String get noSuppliers => 'No suppliers yet';
+
+  @override
+  String get newSupplier => 'New supplier';
+
+  @override
+  String get hideSupplier => 'Hide supplier';
+
+  @override
+  String get hideSupplierConfirm =>
+      'This supplier will disappear from the lists. His old purchase invoices stay.';
+
+  @override
+  String get supplierLabel => 'Supplier';
+
+  @override
+  String get chooseSupplier => 'Choose a supplier';
+
+  @override
+  String get noSupplierSelected => 'No supplier selected';
+
+  @override
+  String get totalPayables => 'Total owed to suppliers';
+
+  @override
+  String get onlyWeOwe => 'Only those we owe';
+
+  @override
+  String get advanceWithSupplier => 'Advance with supplier';
+
+  @override
+  String get noPayable => 'Nothing owed';
+
+  @override
+  String get weOwe => 'We owe';
+
+  @override
+  String suppliersWithDebt(String count) {
+    return 'Suppliers we owe: $count';
+  }
+
+  @override
+  String statementSupplierHeader(String name) {
+    return 'Supplier statement: $name';
+  }
+
+  @override
+  String get statementWeOwe => 'Amount owed to the supplier';
+
+  @override
+  String get statementAdvance => 'Our advance with the supplier';
+
+  @override
+  String get statementNoPayable => 'Nothing is owed to the supplier.';
+
+  @override
+  String ledgerPurchase(String number) {
+    return 'Purchase $number';
+  }
+
+  @override
+  String get purchases => 'Purchases';
+
+  @override
+  String get newPurchase => 'New purchase invoice';
+
+  @override
+  String get purchasesHistory => 'Purchases history';
+
+  @override
+  String get purchaseDetails => 'Purchase invoice details';
+
+  @override
+  String get unitCostLabel => 'Unit cost';
+
+  @override
+  String get supplierInvoiceNumber => 'Supplier invoice number (optional)';
+
+  @override
+  String get purchaseDate => 'Purchase date';
+
+  @override
+  String get purchaseRate => 'Exchange rate for this invoice';
+
+  @override
+  String get updateCosts => 'Update product costs';
+
+  @override
+  String get updateCostsHint =>
+      'Each product\'s cost becomes the unit cost on this invoice';
+
+  @override
+  String get addItems => 'Add items by searching or scanning a barcode';
+
+  @override
+  String get searchOrScanProduct => 'Search a product or scan its barcode';
+
+  @override
+  String get savePurchase => 'Save purchase invoice';
+
+  @override
+  String get purchaseSaved => 'Purchase invoice saved';
+
+  @override
+  String get continuousScanHintPurchase =>
+      'Scan the items one after another (one unit per read), then go back';
+
+  @override
+  String get discardPurchase => 'Discard the current invoice?';
+
+  @override
+  String get discardPurchaseConfirm => 'The items you added will be lost.';
+
+  @override
+  String get keepEditing => 'Keep editing';
+
+  @override
+  String get discard => 'Discard';
+
+  @override
+  String previousCostLabel(String cost) {
+    return 'Previous cost: $cost';
+  }
+
+  @override
+  String costChange(String percent) {
+    return 'Change: $percent';
+  }
+
+  @override
+  String purchasesCount(String count) {
+    return 'Invoices: $count';
+  }
+
+  @override
+  String get totalPurchasesBase => 'Total purchases (base currency)';
+
+  @override
+  String get noPurchases => 'No purchase invoices on this day';
+
+  @override
+  String get voidPurchase => 'Void purchase invoice';
+
+  @override
+  String get voidPurchaseConfirm =>
+      'The invoice quantities will be taken out of the stock (it may go below zero if the goods were sold). The previous product costs are not restored. This cannot be undone.';
+
+  @override
+  String get voidPurchaseCreditNote =>
+      'This is a credit purchase: the supplier\'s balance will change when it is voided.';
+
+  @override
+  String get purchaseVoided => 'Purchase invoice voided';
+
+  @override
+  String get payableAtPurchase => 'Owed to the supplier at purchase';
+
+  @override
+  String get errSupplierRequired => 'Choose a supplier for a credit purchase';
+
+  @override
+  String get errSupplierHasDebt =>
+      'A supplier we owe, or who holds an advance of ours, cannot be hidden';
+
+  @override
+  String get errNoPayable => 'Nothing is owed to the supplier in this currency';
+
+  @override
+  String get errEmptyPurchase => 'Add at least one item';
 }

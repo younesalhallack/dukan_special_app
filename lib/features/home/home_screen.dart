@@ -7,6 +7,9 @@ import '../../l10n/l10n.dart';
 import '../customers/providers/customers_providers.dart';
 import '../customers/screens/customers_screen.dart';
 import '../inventory/providers/inventory_providers.dart';
+import '../purchases/screens/purchases_history_screen.dart';
+import '../suppliers/providers/suppliers_providers.dart';
+import '../suppliers/screens/suppliers_screen.dart';
 import '../inventory/screens/categories_screen.dart';
 import '../inventory/screens/low_stock_screen.dart';
 import '../inventory/screens/products_screen.dart';
@@ -31,6 +34,7 @@ class HomeScreen extends ConsumerWidget {
     if (settings == null) return const SizedBox.shrink();
     final lowStockCount = ref.watch(lowStockProvider).value?.length ?? 0;
     final debtors = ref.watch(debtTotalsProvider).value?.customersWithDebt ?? 0;
+    final owedSuppliers = ref.watch(payableTotalsProvider).value?.suppliersOwed ?? 0;
 
     const usdMinor = 1000; // 10.00 USD
     final syp = Money.salePriceIn(
@@ -80,6 +84,24 @@ class HomeScreen extends ConsumerWidget {
                   ? Badge(label: Text('$debtors'))
                   : const Icon(Icons.chevron_right),
               onTap: () => _open(context, const CustomersScreen()),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.shopping_bag_outlined),
+              title: Text(l10n.purchases),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => _open(context, const PurchasesHistoryScreen()),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.local_shipping_outlined),
+              title: Text(l10n.suppliers),
+              trailing: owedSuppliers > 0
+                  ? Badge(label: Text('$owedSuppliers'))
+                  : const Icon(Icons.chevron_right),
+              onTap: () => _open(context, const SuppliersScreen()),
             ),
           ),
           Card(

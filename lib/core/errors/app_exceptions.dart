@@ -16,6 +16,10 @@ enum AppError {
   customerHasDebt,
   paymentExceedsDebt,
   noDebt,
+  supplierRequired,
+  supplierHasDebt,
+  noPayable,
+  emptyPurchase,
 }
 
 class AppException implements Exception {

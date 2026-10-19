@@ -189,4 +189,76 @@ void main() {
 
     await appDb.close();
   });
+
+  test('a version 3 database is upgraded to version 4 (suppliers and purchases)', () async {
+    final path = p.join(tmp.path, 'v3.db');
+
+    // Build a database exactly as version 3 of the app left it.
+    final v3 = await databaseFactoryFfi.openDatabase(
+      path,
+      options: OpenDatabaseOptions(
+        version: 3,
+        onCreate: (db, _) async {
+          for (final sql in schemaV1) {
+            await db.execute(sql);
+          }
+          for (final sql in migrations[2]!) {
+            await db.execute(sql);
+          }
+          for (final sql in migrations[3]!) {
+            await db.execute(sql);
+          }
+          await db.insert(Tables.products, {
+            'name': 'منتج',
+            'name_normalized': 'منتج',
+            'created_at': '2026-10-01T00:00:00.000Z',
+            'updated_at': '2026-10-01T00:00:00.000Z',
+          });
+          await db.insert(Tables.stockMovements, {
+            'product_id': 1,
+            'change_qty': 5.0,
+            'reason': 'restock',
+            'created_at': '2026-10-01T00:00:00.000Z',
+          });
+        },
+      ),
+    );
+    await v3.close();
+
+    final appDb = AppDatabase.forTesting(path: path, factory: databaseFactoryFfi);
+    final db = await appDb.database;
+
+    final version = await db.rawQuery('PRAGMA user_version');
+    expect(version.first.values.first, currentDbVersion);
+    expect(currentDbVersion, greaterThanOrEqualTo(4));
+
+    final tables = {
+      for (final row in await db.rawQuery(
+        "SELECT name FROM sqlite_master WHERE type = 'table'",
+      ))
+        row['name'] as String,
+    };
+    expect(
+      tables,
+      containsAll([
+        Tables.suppliers,
+        Tables.purchases,
+        Tables.purchaseItems,
+        Tables.supplierPayments,
+      ]),
+    );
+
+    // The old stock movement survives and the new link column is empty.
+    final movement = (await db.query(Tables.stockMovements)).single;
+    expect(movement['change_qty'], 5.0);
+    expect(movement['ref_purchase_id'], isNull);
+
+    final settings = {
+      for (final row in await db.query(Tables.settings))
+        row['key'] as String: row['value'] as String,
+    };
+    expect(settings[SettingKeys.purchaseCounter], '0');
+
+    await appDb.close();
+  });
 }

@@ -1189,6 +1189,342 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'لا يوجد دين بهذه العملة على الزبون'**
   String get errNoDebt;
+
+  /// No description provided for @suppliers.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموردون'**
+  String get suppliers;
+
+  /// No description provided for @addSupplier.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة مورد'**
+  String get addSupplier;
+
+  /// No description provided for @editSupplier.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعديل المورد'**
+  String get editSupplier;
+
+  /// No description provided for @supplierName.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسم المورد'**
+  String get supplierName;
+
+  /// No description provided for @searchSuppliers.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث بالاسم أو الهاتف'**
+  String get searchSuppliers;
+
+  /// No description provided for @noSuppliers.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد موردون'**
+  String get noSuppliers;
+
+  /// No description provided for @newSupplier.
+  ///
+  /// In ar, this message translates to:
+  /// **'مورد جديد'**
+  String get newSupplier;
+
+  /// No description provided for @hideSupplier.
+  ///
+  /// In ar, this message translates to:
+  /// **'إخفاء المورد'**
+  String get hideSupplier;
+
+  /// No description provided for @hideSupplierConfirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'سيختفي هذا المورد من القوائم، وتبقى فواتير شرائه القديمة.'**
+  String get hideSupplierConfirm;
+
+  /// No description provided for @supplierLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'المورد'**
+  String get supplierLabel;
+
+  /// No description provided for @chooseSupplier.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر المورد'**
+  String get chooseSupplier;
+
+  /// No description provided for @noSupplierSelected.
+  ///
+  /// In ar, this message translates to:
+  /// **'بدون مورد محدد'**
+  String get noSupplierSelected;
+
+  /// No description provided for @totalPayables.
+  ///
+  /// In ar, this message translates to:
+  /// **'إجمالي ما علينا للموردين'**
+  String get totalPayables;
+
+  /// No description provided for @onlyWeOwe.
+  ///
+  /// In ar, this message translates to:
+  /// **'من نحن مدينون لهم'**
+  String get onlyWeOwe;
+
+  /// No description provided for @advanceWithSupplier.
+  ///
+  /// In ar, this message translates to:
+  /// **'رصيد لنا عند المورد'**
+  String get advanceWithSupplier;
+
+  /// No description provided for @noPayable.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا دين للمورد'**
+  String get noPayable;
+
+  /// No description provided for @weOwe.
+  ///
+  /// In ar, this message translates to:
+  /// **'علينا'**
+  String get weOwe;
+
+  /// No description provided for @suppliersWithDebt.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الموردين الدائنين: {count}'**
+  String suppliersWithDebt(String count);
+
+  /// No description provided for @statementSupplierHeader.
+  ///
+  /// In ar, this message translates to:
+  /// **'كشف حساب المورد: {name}'**
+  String statementSupplierHeader(String name);
+
+  /// No description provided for @statementWeOwe.
+  ///
+  /// In ar, this message translates to:
+  /// **'المبلغ المستحق للمورد'**
+  String get statementWeOwe;
+
+  /// No description provided for @statementAdvance.
+  ///
+  /// In ar, this message translates to:
+  /// **'رصيد لنا عند المورد'**
+  String get statementAdvance;
+
+  /// No description provided for @statementNoPayable.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد مبلغ مستحق للمورد.'**
+  String get statementNoPayable;
+
+  /// No description provided for @ledgerPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'شراء {number}'**
+  String ledgerPurchase(String number);
+
+  /// No description provided for @purchases.
+  ///
+  /// In ar, this message translates to:
+  /// **'المشتريات'**
+  String get purchases;
+
+  /// No description provided for @newPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'فاتورة شراء جديدة'**
+  String get newPurchase;
+
+  /// No description provided for @purchasesHistory.
+  ///
+  /// In ar, this message translates to:
+  /// **'سجل المشتريات'**
+  String get purchasesHistory;
+
+  /// No description provided for @purchaseDetails.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل فاتورة الشراء'**
+  String get purchaseDetails;
+
+  /// No description provided for @unitCostLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'تكلفة الوحدة'**
+  String get unitCostLabel;
+
+  /// No description provided for @supplierInvoiceNumber.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم فاتورة المورد (اختياري)'**
+  String get supplierInvoiceNumber;
+
+  /// No description provided for @purchaseDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاريخ الشراء'**
+  String get purchaseDate;
+
+  /// No description provided for @purchaseRate.
+  ///
+  /// In ar, this message translates to:
+  /// **'سعر الصرف لهذه الفاتورة'**
+  String get purchaseRate;
+
+  /// No description provided for @updateCosts.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث تكلفة المنتجات'**
+  String get updateCosts;
+
+  /// No description provided for @updateCostsHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصبح تكلفة كل منتج = سعر الوحدة في هذه الفاتورة'**
+  String get updateCostsHint;
+
+  /// No description provided for @addItems.
+  ///
+  /// In ar, this message translates to:
+  /// **'أضف أصنافاً بالبحث أو بمسح الباركود'**
+  String get addItems;
+
+  /// No description provided for @searchOrScanProduct.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن منتج أو امسح الباركود'**
+  String get searchOrScanProduct;
+
+  /// No description provided for @savePurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'حفظ فاتورة الشراء'**
+  String get savePurchase;
+
+  /// No description provided for @purchaseSaved.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم حفظ فاتورة الشراء'**
+  String get purchaseSaved;
+
+  /// No description provided for @continuousScanHintPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'امسح الأصناف تباعاً (وحدة لكل قراءة)، ثم ارجع'**
+  String get continuousScanHintPurchase;
+
+  /// No description provided for @discardPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء الفاتورة الحالية؟'**
+  String get discardPurchase;
+
+  /// No description provided for @discardPurchaseConfirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'ستفقد الأصناف التي أضفتها.'**
+  String get discardPurchaseConfirm;
+
+  /// No description provided for @keepEditing.
+  ///
+  /// In ar, this message translates to:
+  /// **'متابعة التحرير'**
+  String get keepEditing;
+
+  /// No description provided for @discard.
+  ///
+  /// In ar, this message translates to:
+  /// **'تجاهل'**
+  String get discard;
+
+  /// No description provided for @previousCostLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'التكلفة السابقة: {cost}'**
+  String previousCostLabel(String cost);
+
+  /// No description provided for @costChange.
+  ///
+  /// In ar, this message translates to:
+  /// **'التغيّر: {percent}'**
+  String costChange(String percent);
+
+  /// No description provided for @purchasesCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الفواتير: {count}'**
+  String purchasesCount(String count);
+
+  /// No description provided for @totalPurchasesBase.
+  ///
+  /// In ar, this message translates to:
+  /// **'إجمالي المشتريات (بالعملة الأساسية)'**
+  String get totalPurchasesBase;
+
+  /// No description provided for @noPurchases.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد فواتير شراء في هذا اليوم'**
+  String get noPurchases;
+
+  /// No description provided for @voidPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء فاتورة الشراء'**
+  String get voidPurchase;
+
+  /// No description provided for @voidPurchaseConfirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'ستُنقَص كميات الفاتورة من المخزون (وقد يصبح المخزون بالسالب إن بيعت البضاعة). لن تُسترجع تكلفة المنتجات السابقة. لا يمكن التراجع عن ذلك.'**
+  String get voidPurchaseConfirm;
+
+  /// No description provided for @voidPurchaseCreditNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذه فاتورة آجلة: سيتغير رصيد المورد بعد إلغائها.'**
+  String get voidPurchaseCreditNote;
+
+  /// No description provided for @purchaseVoided.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم إلغاء فاتورة الشراء'**
+  String get purchaseVoided;
+
+  /// No description provided for @payableAtPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدين للمورد وقت الشراء'**
+  String get payableAtPurchase;
+
+  /// No description provided for @errSupplierRequired.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر مورداً للشراء الآجل'**
+  String get errSupplierRequired;
+
+  /// No description provided for @errSupplierHasDebt.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يمكن إخفاء مورد له أو علينا له رصيد'**
+  String get errSupplierHasDebt;
+
+  /// No description provided for @errNoPayable.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد دين للمورد بهذه العملة'**
+  String get errNoPayable;
+
+  /// No description provided for @errEmptyPurchase.
+  ///
+  /// In ar, this message translates to:
+  /// **'أضف صنفاً واحداً على الأقل'**
+  String get errEmptyPurchase;
 }
 
 class _AppLocalizationsDelegate

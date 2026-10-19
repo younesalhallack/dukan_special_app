@@ -31,10 +31,13 @@ Future<String?> scanBarcode(BuildContext context) {
 /// The user closes the screen with the back button.
 Future<void> scanBarcodesContinuously(
   BuildContext context,
-  Future<String> Function(String code) onScan,
-) {
+  Future<String> Function(String code) onScan, {
+  String? hint,
+}) {
   return Navigator.of(context).push<void>(
-    MaterialPageRoute<void>(builder: (_) => BarcodeScannerScreen(onScan: onScan)),
+    MaterialPageRoute<void>(
+      builder: (_) => BarcodeScannerScreen(onScan: onScan, hint: hint),
+    ),
   );
 }
 
@@ -42,9 +45,12 @@ Future<void> scanBarcodesContinuously(
 /// barcode and closes. With [onScan] it keeps scanning. A manual-entry button
 /// is always available as a fallback.
 class BarcodeScannerScreen extends StatefulWidget {
-  const BarcodeScannerScreen({super.key, this.onScan});
+  const BarcodeScannerScreen({super.key, this.onScan, this.hint});
 
   final Future<String> Function(String code)? onScan;
+
+  /// Overrides the hint shown in continuous mode.
+  final String? hint;
 
   @override
   State<BarcodeScannerScreen> createState() => _BarcodeScannerScreenState();
@@ -200,7 +206,9 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
                       const SizedBox(height: 8),
                     ],
                     Text(
-                      _continuous ? l10n.continuousScanHint : l10n.scanHint,
+                      _continuous
+                          ? (widget.hint ?? l10n.continuousScanHint)
+                          : l10n.scanHint,
                       style: const TextStyle(color: Colors.white),
                       textAlign: TextAlign.center,
                     ),

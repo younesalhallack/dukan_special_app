@@ -599,4 +599,189 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errNoDebt => 'لا يوجد دين بهذه العملة على الزبون';
+
+  @override
+  String get suppliers => 'الموردون';
+
+  @override
+  String get addSupplier => 'إضافة مورد';
+
+  @override
+  String get editSupplier => 'تعديل المورد';
+
+  @override
+  String get supplierName => 'اسم المورد';
+
+  @override
+  String get searchSuppliers => 'ابحث بالاسم أو الهاتف';
+
+  @override
+  String get noSuppliers => 'لا يوجد موردون';
+
+  @override
+  String get newSupplier => 'مورد جديد';
+
+  @override
+  String get hideSupplier => 'إخفاء المورد';
+
+  @override
+  String get hideSupplierConfirm =>
+      'سيختفي هذا المورد من القوائم، وتبقى فواتير شرائه القديمة.';
+
+  @override
+  String get supplierLabel => 'المورد';
+
+  @override
+  String get chooseSupplier => 'اختر المورد';
+
+  @override
+  String get noSupplierSelected => 'بدون مورد محدد';
+
+  @override
+  String get totalPayables => 'إجمالي ما علينا للموردين';
+
+  @override
+  String get onlyWeOwe => 'من نحن مدينون لهم';
+
+  @override
+  String get advanceWithSupplier => 'رصيد لنا عند المورد';
+
+  @override
+  String get noPayable => 'لا دين للمورد';
+
+  @override
+  String get weOwe => 'علينا';
+
+  @override
+  String suppliersWithDebt(String count) {
+    return 'عدد الموردين الدائنين: $count';
+  }
+
+  @override
+  String statementSupplierHeader(String name) {
+    return 'كشف حساب المورد: $name';
+  }
+
+  @override
+  String get statementWeOwe => 'المبلغ المستحق للمورد';
+
+  @override
+  String get statementAdvance => 'رصيد لنا عند المورد';
+
+  @override
+  String get statementNoPayable => 'لا يوجد مبلغ مستحق للمورد.';
+
+  @override
+  String ledgerPurchase(String number) {
+    return 'شراء $number';
+  }
+
+  @override
+  String get purchases => 'المشتريات';
+
+  @override
+  String get newPurchase => 'فاتورة شراء جديدة';
+
+  @override
+  String get purchasesHistory => 'سجل المشتريات';
+
+  @override
+  String get purchaseDetails => 'تفاصيل فاتورة الشراء';
+
+  @override
+  String get unitCostLabel => 'تكلفة الوحدة';
+
+  @override
+  String get supplierInvoiceNumber => 'رقم فاتورة المورد (اختياري)';
+
+  @override
+  String get purchaseDate => 'تاريخ الشراء';
+
+  @override
+  String get purchaseRate => 'سعر الصرف لهذه الفاتورة';
+
+  @override
+  String get updateCosts => 'تحديث تكلفة المنتجات';
+
+  @override
+  String get updateCostsHint =>
+      'تصبح تكلفة كل منتج = سعر الوحدة في هذه الفاتورة';
+
+  @override
+  String get addItems => 'أضف أصنافاً بالبحث أو بمسح الباركود';
+
+  @override
+  String get searchOrScanProduct => 'ابحث عن منتج أو امسح الباركود';
+
+  @override
+  String get savePurchase => 'حفظ فاتورة الشراء';
+
+  @override
+  String get purchaseSaved => 'تم حفظ فاتورة الشراء';
+
+  @override
+  String get continuousScanHintPurchase =>
+      'امسح الأصناف تباعاً (وحدة لكل قراءة)، ثم ارجع';
+
+  @override
+  String get discardPurchase => 'إلغاء الفاتورة الحالية؟';
+
+  @override
+  String get discardPurchaseConfirm => 'ستفقد الأصناف التي أضفتها.';
+
+  @override
+  String get keepEditing => 'متابعة التحرير';
+
+  @override
+  String get discard => 'تجاهل';
+
+  @override
+  String previousCostLabel(String cost) {
+    return 'التكلفة السابقة: $cost';
+  }
+
+  @override
+  String costChange(String percent) {
+    return 'التغيّر: $percent';
+  }
+
+  @override
+  String purchasesCount(String count) {
+    return 'عدد الفواتير: $count';
+  }
+
+  @override
+  String get totalPurchasesBase => 'إجمالي المشتريات (بالعملة الأساسية)';
+
+  @override
+  String get noPurchases => 'لا توجد فواتير شراء في هذا اليوم';
+
+  @override
+  String get voidPurchase => 'إلغاء فاتورة الشراء';
+
+  @override
+  String get voidPurchaseConfirm =>
+      'ستُنقَص كميات الفاتورة من المخزون (وقد يصبح المخزون بالسالب إن بيعت البضاعة). لن تُسترجع تكلفة المنتجات السابقة. لا يمكن التراجع عن ذلك.';
+
+  @override
+  String get voidPurchaseCreditNote =>
+      'هذه فاتورة آجلة: سيتغير رصيد المورد بعد إلغائها.';
+
+  @override
+  String get purchaseVoided => 'تم إلغاء فاتورة الشراء';
+
+  @override
+  String get payableAtPurchase => 'الدين للمورد وقت الشراء';
+
+  @override
+  String get errSupplierRequired => 'اختر مورداً للشراء الآجل';
+
+  @override
+  String get errSupplierHasDebt => 'لا يمكن إخفاء مورد له أو علينا له رصيد';
+
+  @override
+  String get errNoPayable => 'لا يوجد دين للمورد بهذه العملة';
+
+  @override
+  String get errEmptyPurchase => 'أضف صنفاً واحداً على الأقل';
 }

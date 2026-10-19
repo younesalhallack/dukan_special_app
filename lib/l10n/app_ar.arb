@@ -310,5 +310,103 @@
   "hideCustomerConfirm": "سيختفي هذا الزبون من القوائم، وتبقى فواتيره القديمة.",
   "errCustomerHasDebt": "لا يمكن إخفاء زبون عليه دين أو له رصيد",
   "errPaymentExceedsDebt": "المبلغ أكبر من الدين المتبقي",
-  "errNoDebt": "لا يوجد دين بهذه العملة على الزبون"
+  "errNoDebt": "لا يوجد دين بهذه العملة على الزبون",
+  "suppliers": "الموردون",
+  "addSupplier": "إضافة مورد",
+  "editSupplier": "تعديل المورد",
+  "supplierName": "اسم المورد",
+  "searchSuppliers": "ابحث بالاسم أو الهاتف",
+  "noSuppliers": "لا يوجد موردون",
+  "newSupplier": "مورد جديد",
+  "hideSupplier": "إخفاء المورد",
+  "hideSupplierConfirm": "سيختفي هذا المورد من القوائم، وتبقى فواتير شرائه القديمة.",
+  "supplierLabel": "المورد",
+  "chooseSupplier": "اختر المورد",
+  "noSupplierSelected": "بدون مورد محدد",
+  "totalPayables": "إجمالي ما علينا للموردين",
+  "onlyWeOwe": "من نحن مدينون لهم",
+  "advanceWithSupplier": "رصيد لنا عند المورد",
+  "noPayable": "لا دين للمورد",
+  "weOwe": "علينا",
+  "suppliersWithDebt": "عدد الموردين الدائنين: {count}",
+  "@suppliersWithDebt": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "statementSupplierHeader": "كشف حساب المورد: {name}",
+  "@statementSupplierHeader": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "statementWeOwe": "المبلغ المستحق للمورد",
+  "statementAdvance": "رصيد لنا عند المورد",
+  "statementNoPayable": "لا يوجد مبلغ مستحق للمورد.",
+  "ledgerPurchase": "شراء {number}",
+  "@ledgerPurchase": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "purchases": "المشتريات",
+  "newPurchase": "فاتورة شراء جديدة",
+  "purchasesHistory": "سجل المشتريات",
+  "purchaseDetails": "تفاصيل فاتورة الشراء",
+  "unitCostLabel": "تكلفة الوحدة",
+  "supplierInvoiceNumber": "رقم فاتورة المورد (اختياري)",
+  "purchaseDate": "تاريخ الشراء",
+  "purchaseRate": "سعر الصرف لهذه الفاتورة",
+  "updateCosts": "تحديث تكلفة المنتجات",
+  "updateCostsHint": "تصبح تكلفة كل منتج = سعر الوحدة في هذه الفاتورة",
+  "addItems": "أضف أصنافاً بالبحث أو بمسح الباركود",
+  "searchOrScanProduct": "ابحث عن منتج أو امسح الباركود",
+  "savePurchase": "حفظ فاتورة الشراء",
+  "purchaseSaved": "تم حفظ فاتورة الشراء",
+  "continuousScanHintPurchase": "امسح الأصناف تباعاً (وحدة لكل قراءة)، ثم ارجع",
+  "discardPurchase": "إلغاء الفاتورة الحالية؟",
+  "discardPurchaseConfirm": "ستفقد الأصناف التي أضفتها.",
+  "keepEditing": "متابعة التحرير",
+  "discard": "تجاهل",
+  "previousCostLabel": "التكلفة السابقة: {cost}",
+  "@previousCostLabel": {
+    "placeholders": {
+      "cost": {
+        "type": "String"
+      }
+    }
+  },
+  "costChange": "التغيّر: {percent}",
+  "@costChange": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "purchasesCount": "عدد الفواتير: {count}",
+  "@purchasesCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "totalPurchasesBase": "إجمالي المشتريات (بالعملة الأساسية)",
+  "noPurchases": "لا توجد فواتير شراء في هذا اليوم",
+  "voidPurchase": "إلغاء فاتورة الشراء",
+  "voidPurchaseConfirm": "ستُنقَص كميات الفاتورة من المخزون (وقد يصبح المخزون بالسالب إن بيعت البضاعة). لن تُسترجع تكلفة المنتجات السابقة. لا يمكن التراجع عن ذلك.",
+  "voidPurchaseCreditNote": "هذه فاتورة آجلة: سيتغير رصيد المورد بعد إلغائها.",
+  "purchaseVoided": "تم إلغاء فاتورة الشراء",
+  "payableAtPurchase": "الدين للمورد وقت الشراء",
+  "errSupplierRequired": "اختر مورداً للشراء الآجل",
+  "errSupplierHasDebt": "لا يمكن إخفاء مورد له أو علينا له رصيد",
+  "errNoPayable": "لا يوجد دين للمورد بهذه العملة",
+  "errEmptyPurchase": "أضف صنفاً واحداً على الأقل"
 }

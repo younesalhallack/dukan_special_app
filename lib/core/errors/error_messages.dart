@@ -20,6 +20,10 @@ String errorMessage(AppLocalizations l10n, Object error) {
       AppError.customerHasDebt => l10n.errCustomerHasDebt,
       AppError.paymentExceedsDebt => l10n.errPaymentExceedsDebt,
       AppError.noDebt => l10n.errNoDebt,
+      AppError.supplierRequired => l10n.errSupplierRequired,
+      AppError.supplierHasDebt => l10n.errSupplierHasDebt,
+      AppError.noPayable => l10n.errNoPayable,
+      AppError.emptyPurchase => l10n.errEmptyPurchase,
     };
   }
   return '$error';

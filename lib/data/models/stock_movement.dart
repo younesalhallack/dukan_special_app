@@ -19,6 +19,7 @@ class StockMovement {
     required this.changeQty,
     required this.reason,
     required this.refTransactionId,
+    required this.refPurchaseId,
     required this.note,
     required this.createdAt,
   });
@@ -28,6 +29,9 @@ class StockMovement {
   final double changeQty;
   final String reason;
   final int? refTransactionId;
+
+  /// Set for movements caused by a purchase invoice.
+  final int? refPurchaseId;
   final String? note;
   final String createdAt;
 
@@ -38,6 +42,7 @@ class StockMovement {
       changeQty: (map['change_qty'] as num).toDouble(),
       reason: map['reason'] as String,
       refTransactionId: map['ref_transaction_id'] as int?,
+      refPurchaseId: map['ref_purchase_id'] as int?,
       note: map['note'] as String?,
       createdAt: map['created_at'] as String,
     );
