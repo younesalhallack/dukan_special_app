@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/currency/currency.dart';
 import '../../core/currency/money.dart';
 import '../../l10n/l10n.dart';
+import '../backup/widgets/backup_reminder_card.dart';
 import '../customers/providers/customers_providers.dart';
 import '../customers/screens/customers_screen.dart';
 import '../inventory/providers/inventory_providers.dart';
@@ -59,6 +60,7 @@ class HomeScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          const BackupReminderCard(),
           Card(
             color: Theme.of(context).colorScheme.primaryContainer,
             child: ListTile(

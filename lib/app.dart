@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/theme/app_theme.dart';
+import 'features/backup/widgets/auto_backup_runner.dart';
 import 'features/home/home_screen.dart';
 import 'features/settings/providers/settings_providers.dart';
 import 'features/settings/screens/first_run_setup_screen.dart';
@@ -31,8 +32,9 @@ class DukanApp extends ConsumerWidget {
         error: (error, _) => Scaffold(
           body: Center(child: Text('$error')),
         ),
-        data: (s) =>
-            s.isConfigured ? const HomeScreen() : const FirstRunSetupScreen(),
+        data: (s) => s.isConfigured
+            ? const AutoBackupRunner(child: HomeScreen())
+            : const FirstRunSetupScreen(),
       ),
     );
   }

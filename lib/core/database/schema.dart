@@ -39,6 +39,9 @@ abstract final class SettingKeys {
   static const allowNegativeStock = 'allow_negative_stock'; // '1' | '0'
   static const invoiceCounter = 'invoice_counter'; // last used invoice number
   static const purchaseCounter = 'purchase_counter'; // last used purchase number
+  static const autoBackupEnabled = 'auto_backup_enabled'; // '1' | '0'
+  static const lastExportAt = 'last_export_at'; // ISO-8601 UTC, last exported backup
+  static const lastAutoBackupAt = 'last_auto_backup_at'; // ISO-8601 UTC
 }
 
 /// Every table a valid database of this app must contain.

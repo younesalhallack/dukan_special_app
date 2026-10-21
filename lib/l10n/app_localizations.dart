@@ -1525,6 +1525,227 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'أضف صنفاً واحداً على الأقل'**
   String get errEmptyPurchase;
+
+  /// No description provided for @backup.
+  ///
+  /// In ar, this message translates to:
+  /// **'النسخ الاحتياطي'**
+  String get backup;
+
+  /// No description provided for @backupSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصدير بياناتك واستعادتها'**
+  String get backupSubtitle;
+
+  /// No description provided for @exportBackup.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصدير نسخة احتياطية'**
+  String get exportBackup;
+
+  /// No description provided for @restoreBackup.
+  ///
+  /// In ar, this message translates to:
+  /// **'استعادة من ملف'**
+  String get restoreBackup;
+
+  /// No description provided for @lastExport.
+  ///
+  /// In ar, this message translates to:
+  /// **'آخر نسخة مُصدَّرة: {date}'**
+  String lastExport(String date);
+
+  /// No description provided for @neverExported.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم تُصدَّر أي نسخة احتياطية بعد'**
+  String get neverExported;
+
+  /// No description provided for @exportOld.
+  ///
+  /// In ar, this message translates to:
+  /// **'مضى {days} يوماً على آخر نسخة مُصدَّرة'**
+  String exportOld(String days);
+
+  /// No description provided for @backupReminder.
+  ///
+  /// In ar, this message translates to:
+  /// **'احفظ نسخة احتياطية من بياناتك'**
+  String get backupReminder;
+
+  /// No description provided for @dbSize.
+  ///
+  /// In ar, this message translates to:
+  /// **'حجم البيانات: {size}'**
+  String dbSize(String size);
+
+  /// No description provided for @currentData.
+  ///
+  /// In ar, this message translates to:
+  /// **'البيانات الحالية'**
+  String get currentData;
+
+  /// No description provided for @backupData.
+  ///
+  /// In ar, this message translates to:
+  /// **'بيانات النسخة'**
+  String get backupData;
+
+  /// No description provided for @dataCounts.
+  ///
+  /// In ar, this message translates to:
+  /// **'{products} منتج • {customers} زبون • {suppliers} مورد • {invoices} فاتورة بيع'**
+  String dataCounts(
+    String products,
+    String customers,
+    String suppliers,
+    String invoices,
+  );
+
+  /// No description provided for @lastInvoice.
+  ///
+  /// In ar, this message translates to:
+  /// **'آخر فاتورة: {date}'**
+  String lastInvoice(String date);
+
+  /// No description provided for @noInvoicesYet.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد فواتير'**
+  String get noInvoicesYet;
+
+  /// No description provided for @autoBackup.
+  ///
+  /// In ar, this message translates to:
+  /// **'نسخ احتياطي تلقائي يومي'**
+  String get autoBackup;
+
+  /// No description provided for @autoBackupHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'يحفظ آخر 7 نسخ داخل التطبيق عند فتحه كل يوم. لا يغني عن التصدير: تُحذف هذه النسخ إذا حُذف التطبيق أو مُسحت بياناته.'**
+  String get autoBackupHint;
+
+  /// No description provided for @internalBackups.
+  ///
+  /// In ar, this message translates to:
+  /// **'النسخ الداخلية'**
+  String get internalBackups;
+
+  /// No description provided for @noInternalBackups.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد نسخ داخلية بعد'**
+  String get noInternalBackups;
+
+  /// No description provided for @backupAuto.
+  ///
+  /// In ar, this message translates to:
+  /// **'تلقائية'**
+  String get backupAuto;
+
+  /// No description provided for @backupSafety.
+  ///
+  /// In ar, this message translates to:
+  /// **'نسخة أمان قبل استعادة'**
+  String get backupSafety;
+
+  /// No description provided for @exportDialogTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر مكان حفظ النسخة'**
+  String get exportDialogTitle;
+
+  /// No description provided for @exportDone.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم حفظ النسخة الاحتياطية'**
+  String get exportDone;
+
+  /// No description provided for @exportHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'احفظ النسخة خارج التطبيق (التنزيلات أو Google Drive). الملف يحوي كل بياناتك فاحتفظ به في مكان آمن.'**
+  String get exportHint;
+
+  /// No description provided for @restoreConfirmTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'استعادة نسخة احتياطية؟'**
+  String get restoreConfirmTitle;
+
+  /// No description provided for @restoreWarning.
+  ///
+  /// In ar, this message translates to:
+  /// **'سيتم استبدال كل بياناتك الحالية (المنتجات والفواتير والزبائن والموردين والإعدادات وسعر الصرف) ببيانات النسخة. تُحفظ نسخة أمان من بياناتك الحالية قبل الاستبدال.'**
+  String get restoreWarning;
+
+  /// No description provided for @restoreDone.
+  ///
+  /// In ar, this message translates to:
+  /// **'تمت الاستعادة'**
+  String get restoreDone;
+
+  /// No description provided for @restoreDoneNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'راجع سعر الصرف في الإعدادات لأنه عاد إلى ما في النسخة. سيُعاد تحميل التطبيق الآن.'**
+  String get restoreDoneNote;
+
+  /// No description provided for @restore.
+  ///
+  /// In ar, this message translates to:
+  /// **'استعادة'**
+  String get restore;
+
+  /// No description provided for @export.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصدير'**
+  String get export;
+
+  /// No description provided for @deleteBackupConfirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف هذه النسخة؟'**
+  String get deleteBackupConfirm;
+
+  /// No description provided for @errBackupNotSqlite.
+  ///
+  /// In ar, this message translates to:
+  /// **'الملف المختار ليس قاعدة بيانات صالحة'**
+  String get errBackupNotSqlite;
+
+  /// No description provided for @errBackupCorrupt.
+  ///
+  /// In ar, this message translates to:
+  /// **'الملف تالف ولا يمكن استعادته'**
+  String get errBackupCorrupt;
+
+  /// No description provided for @errBackupNotOurs.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا الملف ليس نسخة احتياطية من هذا التطبيق'**
+  String get errBackupNotOurs;
+
+  /// No description provided for @errBackupNewerVersion.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذه النسخة أحدث من إصدار التطبيق. حدّث التطبيق أولاً'**
+  String get errBackupNewerVersion;
+
+  /// No description provided for @errBackupReadFailed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّرت قراءة الملف'**
+  String get errBackupReadFailed;
+
+  /// No description provided for @errRestoreFailed.
+  ///
+  /// In ar, this message translates to:
+  /// **'فشلت الاستعادة، وأُعيدت بياناتك السابقة كما كانت'**
+  String get errRestoreFailed;
 }
 
 class _AppLocalizationsDelegate

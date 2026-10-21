@@ -793,4 +793,133 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errEmptyPurchase => 'Add at least one item';
+
+  @override
+  String get backup => 'Backup';
+
+  @override
+  String get backupSubtitle => 'Export your data and restore it';
+
+  @override
+  String get exportBackup => 'Export a backup';
+
+  @override
+  String get restoreBackup => 'Restore from a file';
+
+  @override
+  String lastExport(String date) {
+    return 'Last exported backup: $date';
+  }
+
+  @override
+  String get neverExported => 'No backup has been exported yet';
+
+  @override
+  String exportOld(String days) {
+    return '$days days since the last exported backup';
+  }
+
+  @override
+  String get backupReminder => 'Save a backup of your data';
+
+  @override
+  String dbSize(String size) {
+    return 'Data size: $size';
+  }
+
+  @override
+  String get currentData => 'Current data';
+
+  @override
+  String get backupData => 'Backup data';
+
+  @override
+  String dataCounts(
+    String products,
+    String customers,
+    String suppliers,
+    String invoices,
+  ) {
+    return '$products products • $customers customers • $suppliers suppliers • $invoices sales invoices';
+  }
+
+  @override
+  String lastInvoice(String date) {
+    return 'Last invoice: $date';
+  }
+
+  @override
+  String get noInvoicesYet => 'No invoices';
+
+  @override
+  String get autoBackup => 'Daily automatic backup';
+
+  @override
+  String get autoBackupHint =>
+      'Keeps the last 7 copies inside the app, made when you open it each day. It does not replace exporting: these copies are deleted if the app is uninstalled or its data cleared.';
+
+  @override
+  String get internalBackups => 'Internal backups';
+
+  @override
+  String get noInternalBackups => 'No internal backups yet';
+
+  @override
+  String get backupAuto => 'Automatic';
+
+  @override
+  String get backupSafety => 'Safety copy before a restore';
+
+  @override
+  String get exportDialogTitle => 'Choose where to save the backup';
+
+  @override
+  String get exportDone => 'Backup saved';
+
+  @override
+  String get exportHint =>
+      'Save the backup outside the app (Downloads or Google Drive). The file holds all your data, so keep it somewhere safe.';
+
+  @override
+  String get restoreConfirmTitle => 'Restore a backup?';
+
+  @override
+  String get restoreWarning =>
+      'ALL your current data (products, invoices, customers, suppliers, settings and the exchange rate) will be replaced by the backup\'s data. A safety copy of your current data is saved first.';
+
+  @override
+  String get restoreDone => 'Restore complete';
+
+  @override
+  String get restoreDoneNote =>
+      'Check the exchange rate in the settings: it went back to what the backup had. The app will reload now.';
+
+  @override
+  String get restore => 'Restore';
+
+  @override
+  String get export => 'Export';
+
+  @override
+  String get deleteBackupConfirm => 'Delete this backup?';
+
+  @override
+  String get errBackupNotSqlite => 'The chosen file is not a valid database';
+
+  @override
+  String get errBackupCorrupt => 'The file is damaged and cannot be restored';
+
+  @override
+  String get errBackupNotOurs => 'This file is not a backup of this app';
+
+  @override
+  String get errBackupNewerVersion =>
+      'This backup is newer than the app. Update the app first';
+
+  @override
+  String get errBackupReadFailed => 'The file could not be read';
+
+  @override
+  String get errRestoreFailed =>
+      'The restore failed, and your previous data was put back as it was';
 }

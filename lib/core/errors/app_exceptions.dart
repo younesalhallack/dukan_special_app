@@ -22,6 +22,25 @@ enum AppError {
   emptyPurchase,
 }
 
+/// Why a backup could not be read or restored.
+enum BackupError {
+  notSqlite,
+  corrupt,
+  notOurDatabase,
+  newerVersion,
+  readFailed,
+  restoreFailed,
+}
+
+class BackupException implements Exception {
+  const BackupException(this.error);
+
+  final BackupError error;
+
+  @override
+  String toString() => 'BackupException(${error.name})';
+}
+
 class AppException implements Exception {
   const AppException(this.error);
 

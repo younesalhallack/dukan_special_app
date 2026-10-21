@@ -16,6 +16,9 @@ class AppSettings {
     required this.digitStyle,
     required this.defaultLowStockThreshold,
     required this.allowNegativeStock,
+    required this.autoBackupEnabled,
+    required this.lastExportAt,
+    required this.lastAutoBackupAt,
     required this.storeName,
     required this.setupCompleted,
   });
@@ -36,6 +39,15 @@ class AppSettings {
 
   /// When false, a sale cannot take the stock below zero.
   final bool allowNegativeStock;
+
+  /// Daily internal backup when the app starts.
+  final bool autoBackupEnabled;
+
+  /// When a backup was last exported out of the app (UTC), if ever.
+  final DateTime? lastExportAt;
+
+  /// When the last automatic internal backup was made (UTC), if ever.
+  final DateTime? lastAutoBackupAt;
   final String storeName;
   final bool setupCompleted;
 
@@ -65,6 +77,9 @@ class AppSettings {
       defaultLowStockThreshold:
           int.tryParse(map[SettingKeys.defaultLowStockThreshold] ?? '') ?? 5,
       allowNegativeStock: (map[SettingKeys.allowNegativeStock] ?? '1') == '1',
+      autoBackupEnabled: (map[SettingKeys.autoBackupEnabled] ?? '1') == '1',
+      lastExportAt: DateTime.tryParse(map[SettingKeys.lastExportAt] ?? ''),
+      lastAutoBackupAt: DateTime.tryParse(map[SettingKeys.lastAutoBackupAt] ?? ''),
       storeName: map[SettingKeys.storeName] ?? '',
       setupCompleted: map[SettingKeys.setupCompleted] == '1',
     );

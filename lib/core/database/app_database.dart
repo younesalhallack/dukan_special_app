@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart' show visibleForTesting;
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
@@ -12,8 +14,8 @@ import 'schema.dart';
 /// [databasePath] to export and restore the file safely.
 class AppDatabase {
   AppDatabase._({String? path, DatabaseFactory? factory})
-    : _overridePath = path,
-      _factoryOverride = factory;
+      : _overridePath = path,
+        _factoryOverride = factory;
 
   /// The app-wide instance.
   static final AppDatabase instance = AppDatabase._();
@@ -23,7 +25,8 @@ class AppDatabase {
   factory AppDatabase.forTesting({
     required String path,
     required DatabaseFactory factory,
-  }) => AppDatabase._(path: path, factory: factory);
+  }) =>
+      AppDatabase._(path: path, factory: factory);
 
   static const String fileName = 'dukan.db';
 
@@ -32,6 +35,9 @@ class AppDatabase {
 
   Database? _db;
   Future<Database>? _opening;
+
+  /// Held while an exclusive operation (backup / restore) owns the file.
+  Completer<void>? _lock;
 
   DatabaseFactory get _factory => _factoryOverride ?? databaseFactory;
 
@@ -42,6 +48,10 @@ class AppDatabase {
   /// The open database. Opens it on first use; concurrent callers share the
   /// same opening operation.
   Future<Database> get database async {
+    // Wait while a backup / restore owns the database file.
+    while (_lock != null) {
+      await _lock!.future;
+    }
     final existing = _db;
     if (existing != null && existing.isOpen) return existing;
     return _opening ??= _open().whenComplete(() => _opening = null);
@@ -105,9 +115,7 @@ class AppDatabase {
   }
 
   /// Runs [action] atomically: if it throws, every change is rolled back.
-  Future<T> runInTransaction<T>(
-    Future<T> Function(Transaction txn) action,
-  ) async {
+  Future<T> runInTransaction<T>(Future<T> Function(Transaction txn) action) async {
     final db = await database;
     return db.transaction(action);
   }
@@ -131,5 +139,25 @@ class AppDatabase {
   Future<Database> reopen() async {
     await close();
     return database;
+  }
+
+  /// Closes the connection and runs [action] with exclusive access to the
+  /// database file (its path is passed in). Everyone who asks for [database]
+  /// meanwhile waits. The connection is NOT reopened here: the next call of
+  /// [database] reopens it, on whatever file is there then (and runs the
+  /// migrations if it is an older one).
+  Future<T> runExclusive<T>(Future<T> Function(String path) action) async {
+    while (_lock != null) {
+      await _lock!.future;
+    }
+    final lock = Completer<void>();
+    _lock = lock;
+    try {
+      await close();
+      return await action(await databasePath());
+    } finally {
+      _lock = null;
+      lock.complete();
+    }
   }
 }

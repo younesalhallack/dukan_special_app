@@ -408,5 +408,85 @@
   "errSupplierRequired": "اختر مورداً للشراء الآجل",
   "errSupplierHasDebt": "لا يمكن إخفاء مورد له أو علينا له رصيد",
   "errNoPayable": "لا يوجد دين للمورد بهذه العملة",
-  "errEmptyPurchase": "أضف صنفاً واحداً على الأقل"
+  "errEmptyPurchase": "أضف صنفاً واحداً على الأقل",
+  "backup": "النسخ الاحتياطي",
+  "backupSubtitle": "تصدير بياناتك واستعادتها",
+  "exportBackup": "تصدير نسخة احتياطية",
+  "restoreBackup": "استعادة من ملف",
+  "lastExport": "آخر نسخة مُصدَّرة: {date}",
+  "@lastExport": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "neverExported": "لم تُصدَّر أي نسخة احتياطية بعد",
+  "exportOld": "مضى {days} يوماً على آخر نسخة مُصدَّرة",
+  "@exportOld": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "backupReminder": "احفظ نسخة احتياطية من بياناتك",
+  "dbSize": "حجم البيانات: {size}",
+  "@dbSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "currentData": "البيانات الحالية",
+  "backupData": "بيانات النسخة",
+  "dataCounts": "{products} منتج • {customers} زبون • {suppliers} مورد • {invoices} فاتورة بيع",
+  "@dataCounts": {
+    "placeholders": {
+      "products": {
+        "type": "String"
+      },
+      "customers": {
+        "type": "String"
+      },
+      "suppliers": {
+        "type": "String"
+      },
+      "invoices": {
+        "type": "String"
+      }
+    }
+  },
+  "lastInvoice": "آخر فاتورة: {date}",
+  "@lastInvoice": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noInvoicesYet": "لا توجد فواتير",
+  "autoBackup": "نسخ احتياطي تلقائي يومي",
+  "autoBackupHint": "يحفظ آخر 7 نسخ داخل التطبيق عند فتحه كل يوم. لا يغني عن التصدير: تُحذف هذه النسخ إذا حُذف التطبيق أو مُسحت بياناته.",
+  "internalBackups": "النسخ الداخلية",
+  "noInternalBackups": "لا توجد نسخ داخلية بعد",
+  "backupAuto": "تلقائية",
+  "backupSafety": "نسخة أمان قبل استعادة",
+  "exportDialogTitle": "اختر مكان حفظ النسخة",
+  "exportDone": "تم حفظ النسخة الاحتياطية",
+  "exportHint": "احفظ النسخة خارج التطبيق (التنزيلات أو Google Drive). الملف يحوي كل بياناتك فاحتفظ به في مكان آمن.",
+  "restoreConfirmTitle": "استعادة نسخة احتياطية؟",
+  "restoreWarning": "سيتم استبدال كل بياناتك الحالية (المنتجات والفواتير والزبائن والموردين والإعدادات وسعر الصرف) ببيانات النسخة. تُحفظ نسخة أمان من بياناتك الحالية قبل الاستبدال.",
+  "restoreDone": "تمت الاستعادة",
+  "restoreDoneNote": "راجع سعر الصرف في الإعدادات لأنه عاد إلى ما في النسخة. سيُعاد تحميل التطبيق الآن.",
+  "restore": "استعادة",
+  "export": "تصدير",
+  "deleteBackupConfirm": "حذف هذه النسخة؟",
+  "errBackupNotSqlite": "الملف المختار ليس قاعدة بيانات صالحة",
+  "errBackupCorrupt": "الملف تالف ولا يمكن استعادته",
+  "errBackupNotOurs": "هذا الملف ليس نسخة احتياطية من هذا التطبيق",
+  "errBackupNewerVersion": "هذه النسخة أحدث من إصدار التطبيق. حدّث التطبيق أولاً",
+  "errBackupReadFailed": "تعذّرت قراءة الملف",
+  "errRestoreFailed": "فشلت الاستعادة، وأُعيدت بياناتك السابقة كما كانت"
 }

@@ -6,6 +6,7 @@ import '../../../core/currency/money.dart';
 import '../../../core/utils/digits.dart';
 import '../../../data/models/app_settings.dart';
 import '../../../l10n/l10n.dart';
+import '../../backup/screens/backup_screen.dart';
 import '../../inventory/widgets/name_dialog.dart';
 import '../providers/settings_providers.dart';
 
@@ -181,6 +182,18 @@ class SettingsScreen extends ConsumerWidget {
                   ],
                   selected: {settings.language},
                   onSelectionChanged: (s) => notifier.setLanguage(s.first),
+                ),
+                const SizedBox(height: 20),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.backup_outlined),
+                    title: Text(l10n.backup),
+                    subtitle: Text(l10n.backupSubtitle),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(builder: (_) => const BackupScreen()),
+                    ),
+                  ),
                 ),
               ],
             ),

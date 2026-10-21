@@ -784,4 +784,133 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errEmptyPurchase => 'أضف صنفاً واحداً على الأقل';
+
+  @override
+  String get backup => 'النسخ الاحتياطي';
+
+  @override
+  String get backupSubtitle => 'تصدير بياناتك واستعادتها';
+
+  @override
+  String get exportBackup => 'تصدير نسخة احتياطية';
+
+  @override
+  String get restoreBackup => 'استعادة من ملف';
+
+  @override
+  String lastExport(String date) {
+    return 'آخر نسخة مُصدَّرة: $date';
+  }
+
+  @override
+  String get neverExported => 'لم تُصدَّر أي نسخة احتياطية بعد';
+
+  @override
+  String exportOld(String days) {
+    return 'مضى $days يوماً على آخر نسخة مُصدَّرة';
+  }
+
+  @override
+  String get backupReminder => 'احفظ نسخة احتياطية من بياناتك';
+
+  @override
+  String dbSize(String size) {
+    return 'حجم البيانات: $size';
+  }
+
+  @override
+  String get currentData => 'البيانات الحالية';
+
+  @override
+  String get backupData => 'بيانات النسخة';
+
+  @override
+  String dataCounts(
+    String products,
+    String customers,
+    String suppliers,
+    String invoices,
+  ) {
+    return '$products منتج • $customers زبون • $suppliers مورد • $invoices فاتورة بيع';
+  }
+
+  @override
+  String lastInvoice(String date) {
+    return 'آخر فاتورة: $date';
+  }
+
+  @override
+  String get noInvoicesYet => 'لا توجد فواتير';
+
+  @override
+  String get autoBackup => 'نسخ احتياطي تلقائي يومي';
+
+  @override
+  String get autoBackupHint =>
+      'يحفظ آخر 7 نسخ داخل التطبيق عند فتحه كل يوم. لا يغني عن التصدير: تُحذف هذه النسخ إذا حُذف التطبيق أو مُسحت بياناته.';
+
+  @override
+  String get internalBackups => 'النسخ الداخلية';
+
+  @override
+  String get noInternalBackups => 'لا توجد نسخ داخلية بعد';
+
+  @override
+  String get backupAuto => 'تلقائية';
+
+  @override
+  String get backupSafety => 'نسخة أمان قبل استعادة';
+
+  @override
+  String get exportDialogTitle => 'اختر مكان حفظ النسخة';
+
+  @override
+  String get exportDone => 'تم حفظ النسخة الاحتياطية';
+
+  @override
+  String get exportHint =>
+      'احفظ النسخة خارج التطبيق (التنزيلات أو Google Drive). الملف يحوي كل بياناتك فاحتفظ به في مكان آمن.';
+
+  @override
+  String get restoreConfirmTitle => 'استعادة نسخة احتياطية؟';
+
+  @override
+  String get restoreWarning =>
+      'سيتم استبدال كل بياناتك الحالية (المنتجات والفواتير والزبائن والموردين والإعدادات وسعر الصرف) ببيانات النسخة. تُحفظ نسخة أمان من بياناتك الحالية قبل الاستبدال.';
+
+  @override
+  String get restoreDone => 'تمت الاستعادة';
+
+  @override
+  String get restoreDoneNote =>
+      'راجع سعر الصرف في الإعدادات لأنه عاد إلى ما في النسخة. سيُعاد تحميل التطبيق الآن.';
+
+  @override
+  String get restore => 'استعادة';
+
+  @override
+  String get export => 'تصدير';
+
+  @override
+  String get deleteBackupConfirm => 'حذف هذه النسخة؟';
+
+  @override
+  String get errBackupNotSqlite => 'الملف المختار ليس قاعدة بيانات صالحة';
+
+  @override
+  String get errBackupCorrupt => 'الملف تالف ولا يمكن استعادته';
+
+  @override
+  String get errBackupNotOurs => 'هذا الملف ليس نسخة احتياطية من هذا التطبيق';
+
+  @override
+  String get errBackupNewerVersion =>
+      'هذه النسخة أحدث من إصدار التطبيق. حدّث التطبيق أولاً';
+
+  @override
+  String get errBackupReadFailed => 'تعذّرت قراءة الملف';
+
+  @override
+  String get errRestoreFailed =>
+      'فشلت الاستعادة، وأُعيدت بياناتك السابقة كما كانت';
 }

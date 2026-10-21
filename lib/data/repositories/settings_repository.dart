@@ -108,6 +108,17 @@ class SettingsRepository {
   Future<void> setAllowNegativeStock(bool value) =>
       _set(SettingKeys.allowNegativeStock, value ? '1' : '0');
 
+  Future<void> setAutoBackupEnabled(bool value) =>
+      _set(SettingKeys.autoBackupEnabled, value ? '1' : '0');
+
+  /// Remembers when a backup was exported out of the app.
+  Future<void> markExported(DateTime at) =>
+      _set(SettingKeys.lastExportAt, at.toUtc().toIso8601String());
+
+  /// Remembers when the last automatic internal backup was made.
+  Future<void> markAutoBackup(DateTime at) =>
+      _set(SettingKeys.lastAutoBackupAt, at.toUtc().toIso8601String());
+
   Future<void> setStoreName(String name) =>
       _set(SettingKeys.storeName, name.trim());
 

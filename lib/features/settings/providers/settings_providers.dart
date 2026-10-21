@@ -63,6 +63,15 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
 
   Future<void> setStoreName(String name) =>
       _mutate((r) => r.setStoreName(name));
+
+  Future<void> setAutoBackupEnabled(bool value) =>
+      _mutate((r) => r.setAutoBackupEnabled(value));
+
+  Future<void> markExported(DateTime at) =>
+      _mutate((r) => r.markExported(at));
+
+  Future<void> markAutoBackup(DateTime at) =>
+      _mutate((r) => r.markAutoBackup(at));
 }
 
 final settingsProvider =

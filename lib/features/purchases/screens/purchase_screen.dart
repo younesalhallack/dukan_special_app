@@ -111,7 +111,10 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
     _focus.requestFocus();
   }
 
-  void _changeLine(int productId, PurchaseDraftLine Function(PurchaseDraftLine) change) {
+  void _changeLine(
+    int productId,
+    PurchaseDraftLine Function(PurchaseDraftLine) change,
+  ) {
     setState(() {
       _lines = [
         for (final line in _lines)
@@ -125,7 +128,10 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
       _removeLine(productId);
       return;
     }
-    _changeLine(productId, (line) => line.copyWith(quantity: _roundQuantity(quantity)));
+    _changeLine(
+      productId,
+      (line) => line.copyWith(quantity: _roundQuantity(quantity)),
+    );
   }
 
   void _removeLine(int productId) {
@@ -141,7 +147,9 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
   Future<void> _submitSearch(String text) async {
     final code = BarcodeUtils.clean(text);
     if (code == null) return;
-    final product = await ref.read(productRepositoryProvider).findByBarcode(code);
+    final product = await ref
+        .read(productRepositoryProvider)
+        .findByBarcode(code);
     if (!mounted) return;
     if (product != null) _addProduct(product);
     _focus.requestFocus();
@@ -150,16 +158,12 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
   Future<void> _openCamera() async {
     final l10n = context.l10n;
     final repo = ref.read(productRepositoryProvider);
-    await scanBarcodesContinuously(
-      context,
-      (code) async {
-        final product = await repo.findByBarcode(code);
-        if (product == null) return l10n.scanNotFound(code);
-        if (mounted) _addProduct(product);
-        return l10n.scanAdded(product.name);
-      },
-      hint: l10n.continuousScanHintPurchase,
-    );
+    await scanBarcodesContinuously(context, (code) async {
+      final product = await repo.findByBarcode(code);
+      if (product == null) return l10n.scanNotFound(code);
+      if (mounted) _addProduct(product);
+      return l10n.scanAdded(product.name);
+    }, hint: l10n.continuousScanHintPurchase);
   }
 
   // --- header fields ---------------------------------------------------------
@@ -222,7 +226,14 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
       exchangeRate: totals.rate,
       lines: totals.lines,
       // The chosen day, at the current time of day (keeps the order of the day).
-      purchaseDate: DateTime(_date.year, _date.month, _date.day, now.hour, now.minute, now.second),
+      purchaseDate: DateTime(
+        _date.year,
+        _date.month,
+        _date.day,
+        now.hour,
+        now.minute,
+        now.second,
+      ),
       discountAmount: totals.discount,
       paymentType: _type,
       paidAmount: _type == PaymentType.credit ? paid : null,
@@ -242,7 +253,9 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
       setState(() => _done = true);
       messenger.showSnackBar(SnackBar(content: Text(l10n.purchaseSaved)));
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute<void>(builder: (_) => PurchaseDetailScreen(purchaseId: id)),
+        MaterialPageRoute<void>(
+          builder: (_) => PurchaseDetailScreen(purchaseId: id),
+        ),
       );
     } catch (e) {
       if (!mounted) return;
@@ -278,16 +291,23 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
     final paidText = _paidNow.text.trim();
     final paid = paidText.isEmpty ? 0 : Money.parse(paidText, _currency);
     final invalidPaid = totals != null && (paid == null || paid > totals.total);
-    final remaining = (totals != null && !invalidPaid) ? totals.total - paid! : null;
+    final remaining = (totals != null && !invalidPaid)
+        ? totals.total - paid!
+        : null;
 
-    final canSave = !_saving &&
+    final canSave =
+        !_saving &&
         totals != null &&
         !totals.isEmpty &&
         (!isCredit || (_supplier != null && !invalidPaid));
 
     Widget content;
     if (_query.trim().isNotEmpty) {
-      content = _SearchResults(query: _query, digits: digits, onPick: _addProduct);
+      content = _SearchResults(
+        query: _query,
+        digits: digits,
+        onPick: _addProduct,
+      );
     } else {
       content = ListView(
         padding: const EdgeInsets.only(bottom: 12),
@@ -328,7 +348,9 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.event_outlined),
-                    title: Text('${l10n.purchaseDate}: ${formatDate(_date, digits: digits)}'),
+                    title: Text(
+                      '${l10n.purchaseDate}: ${formatDate(_date, digits: digits)}',
+                    ),
                     onTap: _pickDate,
                   ),
                   const SizedBox(height: 4),
@@ -337,8 +359,14 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
                       Expanded(child: Text(l10n.invoiceCurrency)),
                       SegmentedButton<Currency>(
                         segments: [
-                          ButtonSegment(value: Currency.usd, label: Text(Currency.usd.symbol)),
-                          ButtonSegment(value: Currency.syp, label: Text(Currency.syp.symbol)),
+                          ButtonSegment(
+                            value: Currency.usd,
+                            label: Text(Currency.usd.symbol),
+                          ),
+                          ButtonSegment(
+                            value: Currency.syp,
+                            label: Text(Currency.syp.symbol),
+                          ),
                         ],
                         selected: {_currency},
                         onSelectionChanged: (s) => setState(() {
@@ -353,7 +381,9 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
                   TextField(
                     controller: _rate,
                     textDirection: TextDirection.ltr,
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true,
+                    ),
                     decoration: InputDecoration(
                       labelText: l10n.purchaseRate,
                       border: const OutlineInputBorder(),
@@ -384,7 +414,9 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
                     TextField(
                       controller: _paidNow,
                       textDirection: TextDirection.ltr,
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       decoration: InputDecoration(
                         labelText: '${l10n.paidNow} (${_currency.symbol})',
                         border: const OutlineInputBorder(),
@@ -437,10 +469,15 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
                 currency: _currency,
                 rate: totals.rate,
                 digits: digits,
-                onQuantityDelta: (delta) =>
-                    _setQuantity(_lines[i].productId, _lines[i].quantity + delta),
+                onQuantityDelta: (delta) => _setQuantity(
+                  _lines[i].productId,
+                  _lines[i].quantity + delta,
+                ),
                 onEditQuantity: () async {
-                  final value = await promptQuantity(context, _lines[i].quantity);
+                  final value = await promptQuantity(
+                    context,
+                    _lines[i].quantity,
+                  );
                   if (value != null) _setQuantity(_lines[i].productId, value);
                 },
                 onEditCost: () async {
@@ -466,7 +503,12 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
     }
 
     final secondary = (totals != null && rateValid)
-        ? Money.convert(totals.total, from: _currency, to: _currency.other, rate: totals.rate)
+        ? Money.convert(
+            totals.total,
+            from: _currency,
+            to: _currency.other,
+            rate: totals.rate,
+          )
         : null;
 
     return PopScope(
@@ -567,27 +609,36 @@ class _PurchaseScreenState extends ConsumerState<PurchaseScreen> {
                           Text(l10n.total, style: textTheme.titleMedium),
                           Text(
                             money(totals?.total ?? 0),
-                            style: textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                            style: textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
-                      if (secondary != null && (settings?.showDualCurrency ?? true))
+                      if (secondary != null &&
+                          (settings?.showDualCurrency ?? true))
                         Align(
                           alignment: AlignmentDirectional.centerEnd,
                           child: Text(
-                            Money.format(secondary, _currency.other, digits: digits),
+                            Money.format(
+                              secondary,
+                              _currency.other,
+                              digits: digits,
+                            ),
                           ),
                         ),
                       const SizedBox(height: 8),
                       SizedBox(
                         width: double.infinity,
                         child: FilledButton.icon(
-                          onPressed: canSave ? () => _save(totals!, paid) : null,
+                          onPressed: canSave ? () => _save(totals, paid) : null,
                           icon: _saving
                               ? const SizedBox(
                                   width: 18,
                                   height: 18,
-                                  child: CircularProgressIndicator(strokeWidth: 2),
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
                                 )
                               : const Icon(Icons.save_outlined),
                           label: Text(l10n.savePurchase),
@@ -686,7 +737,10 @@ class _LineTile extends StatelessWidget {
               InkWell(
                 onTap: onEditQuantity,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   child: Text(
                     formatQuantity(line.quantity, digits: digits),
                     style: textTheme.titleMedium,
@@ -712,7 +766,9 @@ class _LineTile extends StatelessWidget {
               ),
               Text(
                 money(priced.lineTotal),
-                style: textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -724,7 +780,11 @@ class _LineTile extends StatelessWidget {
                 children: [
                   Text(
                     l10n.previousCostLabel(
-                      Money.format(line.previousCost, line.previousCurrency, digits: digits),
+                      Money.format(
+                        line.previousCost,
+                        line.previousCurrency,
+                        digits: digits,
+                      ),
                     ),
                     style: textTheme.bodySmall,
                   ),

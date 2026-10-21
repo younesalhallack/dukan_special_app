@@ -26,5 +26,15 @@ String errorMessage(AppLocalizations l10n, Object error) {
       AppError.emptyPurchase => l10n.errEmptyPurchase,
     };
   }
+  if (error is BackupException) {
+    return switch (error.error) {
+      BackupError.notSqlite => l10n.errBackupNotSqlite,
+      BackupError.corrupt => l10n.errBackupCorrupt,
+      BackupError.notOurDatabase => l10n.errBackupNotOurs,
+      BackupError.newerVersion => l10n.errBackupNewerVersion,
+      BackupError.readFailed => l10n.errBackupReadFailed,
+      BackupError.restoreFailed => l10n.errRestoreFailed,
+    };
+  }
   return '$error';
 }

@@ -48,6 +48,9 @@ void main() {
     expect(s.digitStyle, DigitStyle.western);
     expect(s.defaultLowStockThreshold, 5);
     expect(s.allowNegativeStock, isTrue);
+    expect(s.autoBackupEnabled, isTrue);
+    expect(s.lastExportAt, isNull);
+    expect(s.lastAutoBackupAt, isNull);
   });
 
   test('completeSetup stores the values and the first rate history row',
@@ -124,5 +127,16 @@ void main() {
     expect(s.defaultLowStockThreshold, 10);
     expect(s.storeName, 'My Shop');
     expect(s.allowNegativeStock, isFalse);
+  });
+
+  test('backup settings round-trip', () async {
+    await repo.setAutoBackupEnabled(false);
+    await repo.markExported(DateTime.utc(2026, 10, 18, 9, 30));
+    await repo.markAutoBackup(DateTime.utc(2026, 10, 19, 7, 5));
+
+    final s = await repo.load();
+    expect(s.autoBackupEnabled, isFalse);
+    expect(s.lastExportAt, DateTime.utc(2026, 10, 18, 9, 30));
+    expect(s.lastAutoBackupAt, DateTime.utc(2026, 10, 19, 7, 5));
   });
 }
